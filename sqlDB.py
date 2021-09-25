@@ -32,7 +32,7 @@ class sqlDB:
         print('County, Table created')
     
     def __createStationTable(self):
-        self.cursorObj.execute(f"CREATE TABLE Station (StationCode TEXT, StationName TEXT, CountyIndex INTEGER NOT NULL, FOREIGN KEY(CountyIndex) REFERENCES County(countyIndex) ON UPDATE CASCADE ON DELETE CASCADE)")
+        self.cursorObj.execute(f"CREATE TABLE Station (StationCode TEXT, StationName TEXT, CountyIndex INTEGER NOT NULL, FOREIGN KEY(CountyIndex) REFERENCES County(countyIndex) ON UPDATE CASCADE ON DELETE CASCADE, PRIMARY KEY(StationCode))")
         print('Station, Table created')
     
     
