@@ -19,6 +19,8 @@ class sqlDB:
             self.__createCountyTable()
         if self.__checkTableExist("Station") is False:
             self.__createStationTable()
+        if self.__checkTableExist("DownloadList") is False:
+            self.__createDownloadListTable()    
             
     def __create_dir(self, dirPath):
         if os.path.isdir(dirPath):
@@ -34,6 +36,11 @@ class sqlDB:
     def __createStationTable(self):
         self.cursorObj.execute(f"CREATE TABLE Station (StationCode TEXT, StationName TEXT, CountyIndex INTEGER NOT NULL, FOREIGN KEY(CountyIndex) REFERENCES County(countyIndex) ON UPDATE CASCADE ON DELETE CASCADE, PRIMARY KEY(StationCode))")
         print('Station, Table created')
+    
+    def __createDownloadListTable(self):
+        self.cursorObj.execute(f"CREATE TABLE DownloadList (StationCode TEXT NOT NULL, DateFrom TEXT, DateTo TEXT, FOREIGN KEY(StationCode) REFERENCES Station(StationCode))")
+        print('DownloadList, Table created')
+    
     
     
     def checkTableIfEmpty(self, tableName):
